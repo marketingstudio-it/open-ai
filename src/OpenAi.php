@@ -901,6 +901,21 @@ class OpenAi
         return $this->sendRequest($url, 'GET');
     }
 
+    
+    /**
+     * @param string $vectorId
+     * @param string $fileId
+     * @return bool|string
+     */
+    public function deleteVectorFile($vectorId, $fileId)
+    {
+        $this->addAssistantsBetaHeader();
+        $url = Url::vectorStoreUrl() . '/' . $vectorId . '/files/' . $fileId;
+        $this->baseUrl($url);
+
+        return $this->sendRequest($url, 'DELETE');
+    }
+
     /**
      * @param string $id
      * @return string
